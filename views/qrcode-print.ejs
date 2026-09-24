@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Codes - <%= nomeRestaurante %></title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #f0f0f0;
+    }
+    .toolbar {
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .toolbar button {
+      background: #174e3d;
+      border: none;
+      border-radius: 7px;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 22px;
+    }
+    .grid {
+      display: grid;
+      gap: 10mm;
+      grid-template-columns: repeat(2, 1fr);
+      margin: 0 auto;
+      max-width: 210mm;
+    }
+    .card {
+      background: white;
+      border: 1px dashed #999;
+      border-radius: 8px;
+      padding: 12mm 6mm;
+      page-break-inside: avoid;
+      text-align: center;
+    }
+    .card img {
+      height: auto;
+      max-width: 100%;
+      width: 55mm;
+    }
+    .card h2 {
+      font-size: 16px;
+      margin: 8px 0 2px;
+    }
+    .card p {
+      color: #555;
+      font-size: 11px;
+      margin: 0;
+    }
+    @media print {
+      body { background: white; padding: 0; }
+      .toolbar { display: none; }
+      @page { size: A4; margin: 10mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button onclick="window.print()">Imprimir</button>
+  </div>
+  <div class="grid">
+    <% mesas.forEach(mesa => { %>
+      <div class="card">
+        <img src="<%= mesa.qr %>" alt="QR Code Mesa <%= mesa.numero %>">
+        <h2><%= nomeRestaurante %></h2>
+        <p>Mesa <%= mesa.numero %></p>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
