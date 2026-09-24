@@ -21,6 +21,7 @@ app.use(session({
 
 app.use('/', authRoutes);
 app.use('/', painelRoutes);
+app.use('/', publicRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');
