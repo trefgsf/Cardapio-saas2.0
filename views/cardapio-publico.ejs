@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= restaurante.nome_restaurante %> - Cardápio</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css?v=2">
+</head>
+<body>
+  <div class="menu-shell">
+    <header class="menu-header">
+      <h1><%= restaurante.nome_restaurante %></h1>
+      <% if (mesa) { %>
+        <span class="mesa-badge">Mesa <%= mesa %></span>
+      <% } %>
+    </header>
+
+    <% if (pratos.length === 0) { %>
+      <div class="empty-state">
+        <p>Este cardápio ainda não tem pratos cadastrados.</p>
+      </div>
+    <% } else { %>
+      <div class="menu-list">
+        <% pratos.forEach(prato => { %>
+          <div class="menu-item">
+            <% if (prato.foto_url) { %>
+              <img src="<%= prato.foto_url %>" alt="<%= prato.nome %>" class="menu-item-photo">
+            <% } else { %>
+              <div class="menu-item-photo menu-item-photo-placeholder"></div>
+            <% } %>
+            <div class="menu-item-info">
+              <h3><%= prato.nome %></h3>
+              <p><%= prato.descricao %></p>
+              <span class="menu-item-price">R$ <%= prato.preco %></span>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
