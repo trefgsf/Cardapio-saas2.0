@@ -20,6 +20,7 @@ router.get('/painel', protegerRota, async (req, res) => {
     res.render('painel', {
       pratos: result.rows,
       nomeRestaurante: req.session.restauranteNome,
+      slug: req.session.restauranteSlug,
       erro: null
     });
   } catch (err) {
