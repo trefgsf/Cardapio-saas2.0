@@ -1,13 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
   --ink: #17231f;
-  --muted: #69756e;
-  --cream: #f8f7f2;
-  --paper: #fffefb;
-  --line: #dfe5dd;
-  --green: #174e3d;
-  --green-light: #dcebe0;
-  --orange: #e67d4e;
-  --shadow: 0 22px 60px rgba(35, 62, 48, 0.12);
+  --muted: #6b7871;
+  --cream: #f7f5ef;
+  --paper: #ffffff;
+  --line: #e6e4dc;
+  --green: #16473a;
+  --green-dark: #0f342b;
+  --green-light: #e2ede5;
+  --orange: #dd7a45;
+  --orange-light: #fbe9dd;
+  --shadow-sm: 0 4px 16px rgba(23, 35, 31, 0.06);
+  --shadow: 0 20px 50px rgba(23, 35, 31, 0.10);
+  --radius: 16px;
 }
 
 * {
@@ -18,14 +24,22 @@ body {
   margin: 0;
   background: var(--cream);
   color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
   color: inherit;
   text-decoration: none;
 }
+
+h1, h2, h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Header / Footer ---------- */
 
 .site-header,
 .site-footer {
@@ -36,7 +50,7 @@ a {
   justify-content: space-between;
   margin: 0 auto;
   max-width: 1180px;
-  padding: 20px;
+  padding: 22px 20px;
 }
 
 .brand {
@@ -45,21 +59,20 @@ a {
   font-size: 18px;
   font-weight: 700;
   gap: 10px;
-  letter-spacing: -0.04em;
 }
 
 .brand-mark {
   align-items: center;
   background: var(--green);
-  border-radius: 9px;
+  border-radius: 10px;
   color: white;
   display: inline-flex;
   flex-shrink: 0;
-  font-family: Georgia, serif;
-  font-size: 20px;
-  height: 34px;
+  font-family: 'Fraunces', serif;
+  font-size: 19px;
+  height: 36px;
   justify-content: center;
-  width: 34px;
+  width: 36px;
 }
 
 .brand-muted {
@@ -71,7 +84,8 @@ a {
   align-items: center;
   display: flex;
   font-size: 14px;
-  gap: 16px;
+  font-weight: 500;
+  gap: 18px;
 }
 
 .nav-links > a:first-child,
@@ -82,34 +96,39 @@ a {
 .button {
   align-items: center;
   background: var(--green);
-  border-radius: 7px;
+  border: none;
+  border-radius: 10px;
   color: white;
+  cursor: pointer;
   display: inline-flex;
+  font-family: inherit;
   font-size: 14px;
-  font-weight: 700;
-  gap: 14px;
-  padding: 14px 18px;
-  transition: background 160ms ease, transform 160ms ease;
+  font-weight: 600;
+  gap: 10px;
+  padding: 14px 20px;
+  transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
   white-space: nowrap;
 }
 
 .button:hover {
-  background: #23694f;
-  transform: translateY(-2px);
+  background: var(--green-dark);
+  box-shadow: 0 8px 20px rgba(22, 71, 58, 0.25);
+  transform: translateY(-1px);
 }
 
 .button-small {
-  padding: 10px 14px;
+  padding: 10px 16px;
 }
 
-/* Hero: mobile-first (empilhado por padrão) */
+/* ---------- Hero ---------- */
+
 .hero {
   display: flex;
   flex-direction: column;
   gap: 40px;
   margin: 0 auto;
   max-width: 1180px;
-  padding: 32px 20px 56px;
+  padding: 24px 20px 56px;
 }
 
 .hero-copy {
@@ -120,31 +139,28 @@ a {
   color: var(--orange);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   margin: 0 0 16px;
   text-transform: uppercase;
 }
 
 h1 {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(34px, 9vw, 78px);
-  font-weight: 400;
-  letter-spacing: -0.05em;
-  line-height: 1.05;
+  font-size: clamp(32px, 9vw, 74px);
+  font-weight: 500;
+  line-height: 1.08;
   margin: 0;
-  word-wrap: break-word;
 }
 
 h1 span {
   color: var(--orange);
+  font-style: italic;
 }
 
 .hero-text {
   color: var(--muted);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
   margin: 22px 0 28px;
-  max-width: 100%;
 }
 
 .hero-actions {
@@ -155,15 +171,15 @@ h1 span {
 }
 
 .text-link {
-  border-bottom: 1px solid #aeb9b0;
+  border-bottom: 1px solid #c3cbc4;
   font-size: 14px;
+  font-weight: 500;
   padding-bottom: 4px;
 }
 
 .menu-preview {
   background: var(--paper);
-  border: 1px solid #e8ebe4;
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: var(--shadow);
   max-width: 100%;
   padding: 26px 22px 22px;
@@ -189,23 +205,21 @@ h1 span {
 }
 
 .preview-line {
-  background: #e1e6de;
+  background: var(--line);
   flex: 1;
   height: 1px;
 }
 
 .menu-preview h2 {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 32px;
-  font-weight: 400;
-  letter-spacing: -0.05em;
-  margin: 20px 0 4px;
+  font-size: 30px;
+  font-weight: 500;
+  margin: 18px 0 4px;
 }
 
 .preview-subtitle {
   color: var(--muted);
   font-size: 13px;
-  margin: 0 0 20px;
+  margin: 0 0 18px;
 }
 
 .dish-list {
@@ -217,34 +231,25 @@ h1 span {
   border-bottom: 1px solid var(--line);
   display: grid;
   gap: 12px;
-  grid-template-columns: 48px 1fr auto;
+  grid-template-columns: 50px 1fr auto;
   padding: 15px 0;
 }
 
 .dish-image {
-  border-radius: 8px;
+  border-radius: 10px;
   flex-shrink: 0;
-  height: 48px;
-  width: 48px;
+  height: 50px;
+  width: 50px;
 }
 
-.dish-image-one {
-  background: linear-gradient(135deg, #c5d3b1, #728f63);
-}
-
-.dish-image-two {
-  background: linear-gradient(135deg, #e8ba83, #b36b3f);
-}
-
-.dish-image-three {
-  background: linear-gradient(135deg, #f2ddad, #d69b66);
-}
+.dish-image-one { background: linear-gradient(135deg, #c5d3b1, #728f63); }
+.dish-image-two { background: linear-gradient(135deg, #e8ba83, #b36b3f); }
+.dish-image-three { background: linear-gradient(135deg, #f2ddad, #d69b66); }
 
 .dish h3 {
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 15px;
-  font-weight: 400;
-  margin: 0 0 4px;
+  font-weight: 500;
+  margin: 0 0 3px;
 }
 
 .dish p {
@@ -255,24 +260,20 @@ h1 span {
 }
 
 .dish strong {
-  align-self: start;
   color: var(--green);
   font-size: 13px;
-  padding-top: 3px;
+  font-weight: 700;
   white-space: nowrap;
 }
 
-/* Benefícios: mobile-first empilhado */
+/* ---------- Benefícios ---------- */
+
 .benefits {
   background: var(--green-light);
   display: grid;
   gap: 32px;
   grid-template-columns: 1fr;
-  padding: 48px 20px;
-}
-
-.benefits article {
-  max-width: 100%;
+  padding: 52px 20px;
 }
 
 .benefit-number {
@@ -283,15 +284,13 @@ h1 span {
 }
 
 .benefits h2 {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 21px;
-  font-weight: 400;
-  letter-spacing: -0.03em;
+  font-size: 20px;
+  font-weight: 500;
   margin: 14px 0 8px;
 }
 
 .benefits p {
-  color: #52635b;
+  color: #4c5b53;
   font-size: 14px;
   line-height: 1.55;
   margin: 0;
@@ -309,77 +308,54 @@ h1 span {
   font-weight: 700;
 }
 
-/* Telas maiores: layout lado a lado */
 @media (min-width: 851px) {
   .hero {
     align-items: center;
     display: grid;
-    flex-direction: unset;
     gap: 80px;
     grid-template-columns: minmax(0, 0.92fr) minmax(380px, 1.08fr);
-    padding: 72px 32px 96px;
+    padding: 76px 32px 100px;
   }
-
-  .hero-copy {
-    max-width: 530px;
-  }
-
-  .hero-actions {
-    align-items: center;
-    flex-direction: row;
-  }
-
-  .menu-preview {
-    padding: 33px 35px 29px;
-    transform: rotate(1.5deg);
-  }
-
-  .site-header,
-  .site-footer {
-    padding: 28px 32px;
-  }
-
+  .hero-copy { max-width: 530px; }
+  .hero-actions { align-items: center; flex-direction: row; }
+  .menu-preview { padding: 34px 36px 30px; transform: rotate(1.2deg); }
+  .site-header, .site-footer { padding: 26px 32px; }
   .benefits {
     grid-template-columns: repeat(3, 1fr);
-    padding: 60px max(32px, calc((100vw - 1116px) / 2));
+    padding: 64px max(32px, calc((100vw - 1116px) / 2));
   }
-
-  .benefits article {
-    max-width: 290px;
-  }
+  .benefits article { max-width: 290px; }
 }
 
-/* --- Painel do dono e formulários --- */
+/* ---------- Auth (login/cadastro) ---------- */
 
 .auth-shell {
   align-items: center;
   display: flex;
   justify-content: center;
-  min-height: 80vh;
-  padding: 40px 20px;
+  min-height: 85vh;
+  padding: 32px 18px;
 }
 
 .auth-card {
   background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 22px;
   box-shadow: var(--shadow);
   max-width: 400px;
-  padding: 40px 32px;
+  padding: 40px 30px;
   width: 100%;
 }
 
 .auth-card h2 {
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 26px;
-  font-weight: 400;
+  font-weight: 500;
   margin: 0 0 8px;
 }
 
 .auth-subtitle {
   color: var(--muted);
   font-size: 14px;
-  margin: 0 0 28px;
+  margin: 0 0 26px;
 }
 
 .field {
@@ -387,26 +363,29 @@ h1 span {
 }
 
 .field label {
+  color: var(--ink);
   display: block;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 6px;
 }
 
 .field input,
 .field textarea {
   background: var(--cream);
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
   box-sizing: border-box;
   font-family: inherit;
   font-size: 15px;
   padding: 13px 14px;
+  transition: border-color 150ms ease, background 150ms ease;
   width: 100%;
 }
 
 .field input:focus,
 .field textarea:focus {
+  background: var(--paper);
   border-color: var(--green);
   outline: none;
 }
@@ -423,7 +402,7 @@ h1 span {
 
 .error-box {
   background: #fdecea;
-  border-radius: 8px;
+  border-radius: 10px;
   color: #b3261e;
   font-size: 13px;
   margin-bottom: 20px;
@@ -433,15 +412,17 @@ h1 span {
 .auth-footer {
   color: var(--muted);
   font-size: 14px;
-  margin-top: 24px;
+  margin-top: 22px;
   text-align: center;
 }
 
 .auth-footer a {
-  border-bottom: 1px solid var(--green);
+  border-bottom: 1.5px solid var(--green);
   color: var(--green);
   font-weight: 700;
 }
+
+/* ---------- Painel do dono ---------- */
 
 .painel-shell {
   margin: 0 auto;
@@ -453,60 +434,69 @@ h1 span {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 
 .painel-header h2 {
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 26px;
-  font-weight: 400;
+  font-weight: 500;
   margin: 0;
 }
 
 .painel-actions {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   font-size: 14px;
+  font-weight: 500;
   gap: 16px;
 }
 
-.painel-actions a {
+.painel-actions a:not(.button) {
   color: var(--muted);
+}
+
+.painel-actions a:not(.button):hover {
+  color: var(--green);
 }
 
 .dish-card-list {
   display: grid;
-  gap: 14px;
+  gap: 12px;
 }
 
 .dish-card {
   align-items: center;
   background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(35, 62, 48, 0.06);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
   display: grid;
-  gap: 12px;
-  grid-template-columns: 60px 1fr auto;
+  gap: 14px;
+  grid-template-columns: 64px 1fr auto;
   padding: 14px;
+  transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+.dish-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
 }
 
 .dish-card img,
 .dish-card-photo-placeholder {
   background: var(--green-light);
-  border-radius: 8px;
-  height: 60px;
+  border-radius: 10px;
+  height: 64px;
   object-fit: cover;
-  width: 60px;
+  width: 64px;
 }
 
 .dish-card h3 {
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 16px;
-  font-weight: 400;
-  margin: 0 0 4px;
+  font-weight: 500;
+  margin: 0 0 3px;
 }
 
 .dish-card p {
@@ -532,45 +522,53 @@ h1 span {
 
 .link-edit {
   color: var(--green);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .btn-delete {
   background: none;
-  border: 1px solid #e3b0ab;
-  border-radius: 6px;
+  border: 1.5px solid #eec4bf;
+  border-radius: 8px;
   color: #b3261e;
   cursor: pointer;
+  font-family: inherit;
   font-size: 12px;
+  font-weight: 500;
   padding: 6px 10px;
+  transition: background 150ms ease;
+}
+
+.btn-delete:hover {
+  background: #fdecea;
 }
 
 .empty-state {
-  border: 1px dashed var(--line);
-  border-radius: 12px;
+  background: var(--paper);
+  border: 1.5px dashed var(--line);
+  border-radius: 16px;
   color: var(--muted);
   padding: 60px 20px;
   text-align: center;
 }
 
+/* ---------- Formulário de prato ---------- */
+
 .form-shell {
   margin: 0 auto;
   max-width: 480px;
-  padding: 32px 16px 60px;
+  padding: 28px 16px 60px;
 }
 
 .form-card {
   background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: var(--shadow);
-  padding: 30px 22px;
+  padding: 30px 24px;
 }
 
 .form-card h2 {
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 500;
   margin: 0 0 24px;
 }
 
@@ -578,59 +576,77 @@ h1 span {
   color: var(--muted);
   display: inline-block;
   font-size: 14px;
+  font-weight: 500;
   margin-top: 20px;
-  }
-/* --- Cardápio público --- */
+}
+
+.back-link:hover {
+  color: var(--green);
+}
+
+/* ---------- Cardápio público (cliente) ---------- */
 
 .menu-shell {
   margin: 0 auto;
-  max-width: 600px;
-  padding: 28px 18px 60px;
+  max-width: 620px;
+  padding: 0 0 60px;
 }
 
 .menu-header {
   align-items: center;
+  background: var(--green);
+  color: white;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 24px;
+  padding: 32px 20px 26px;
 }
 
 .menu-header h1 {
-  font-size: clamp(28px, 8vw, 40px);
+  color: white;
+  font-size: clamp(24px, 7vw, 34px);
+  font-weight: 500;
+  margin: 0;
 }
 
 .mesa-badge {
   background: var(--orange);
   border-radius: 20px;
   color: white;
+  flex-shrink: 0;
   font-size: 12px;
   font-weight: 700;
-  padding: 6px 14px;
+  padding: 7px 14px;
   white-space: nowrap;
 }
 
 .menu-list {
   display: grid;
-  gap: 16px;
+  gap: 14px;
+  padding: 22px 18px 0;
 }
 
 .menu-item {
   align-items: center;
   background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(35, 62, 48, 0.06);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
   display: grid;
   gap: 14px;
-  grid-template-columns: 76px 1fr;
+  grid-template-columns: 78px 1fr;
   padding: 14px;
+  transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+.menu-item:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
 }
 
 .menu-item-photo {
-  border-radius: 8px;
-  height: 76px;
+  border-radius: 12px;
+  height: 78px;
   object-fit: cover;
-  width: 76px;
+  width: 78px;
 }
 
 .menu-item-photo-placeholder {
@@ -638,9 +654,8 @@ h1 span {
 }
 
 .menu-item-info h3 {
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 17px;
-  font-weight: 400;
+  font-weight: 500;
   margin: 0 0 4px;
 }
 
@@ -652,7 +667,11 @@ h1 span {
 }
 
 .menu-item-price {
-  color: var(--green);
-  font-size: 14px;
+  background: var(--orange-light);
+  border-radius: 8px;
+  color: var(--orange);
+  display: inline-block;
+  font-size: 13px;
   font-weight: 700;
+  padding: 3px 10px;
   }
