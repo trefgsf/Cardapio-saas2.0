@@ -9,13 +9,13 @@ router.get('/cadastro', (req, res) => {
 });
 
 router.post('/cadastro', async (req, res) => {
-  const { nome_restaurante, email, senha, slug } = req.body;
+  const { nome_restaurante, email, senha, slug, tipo_conta } = req.body;
   try {
     const senha_hash = await bcrypt.hash(senha, 10);
     await pool.query(
-      `INSERT INTO restaurantes (nome_restaurante, email, senha_hash, slug)
-       VALUES ($1, $2, $3, $4)`,
-      [nome_restaurante, email, senha_hash, slug]
+      `INSERT INTO restaurantes (nome_restaurante, email, senha_hash, slug, tipo_conta)
+       VALUES ($1, $2, $3, $4, $5)`,
+      [nome_restaurante, email, senha_hash, slug, tipo_conta]
     );
     res.redirect('/login');
   } catch (err) {
@@ -49,6 +49,7 @@ router.post('/login', async (req, res) => {
     req.session.restauranteId = restaurante.id;
     req.session.restauranteNome = restaurante.nome_restaurante;
     req.session.restauranteSlug = restaurante.slug;
+    req.session.tipoConta = restaurante.tipo_conta;
     res.redirect('/painel');
   } catch (err) {
     console.error(err);
