@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require('../config/db');
 const upload = require('../config/cloudinary');
+const QRCode = require('qrcode'); 
 
 const router = express.Router();
 
