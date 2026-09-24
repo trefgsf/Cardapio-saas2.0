@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Cardápio SaaS</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="auth-shell">
+    <div class="auth-card">
+      <h2>Criar sua conta</h2>
+      <p class="auth-subtitle">Comece a montar o cardápio do seu restaurante.</p>
+      <% if (erro) { %>
+        <div class="error-box"><%= erro %></div>
+      <% } %>
+      <form method="POST" action="/cadastro">
+        <div class="field">
+          <label>Nome do restaurante</label>
+          <input type="text" name="nome_restaurante" placeholder="Ex: Pizzaria do João" required>
+        </div>
+        <div class="field">
+          <label>Endereço do cardápio</label>
+          <input type="text" name="slug" placeholder="Ex: pizza-do-joao" required>
+        </div>
+        <div class="field">
+          <label>E-mail</label>
+          <input type="email" name="email" placeholder="seu@email.com" required>
+        </div>
+        <div class="field">
+          <label>Senha</label>
+          <input type="password" name="senha" placeholder="••••••••" required>
+        </div>
+        <button class="button button-full" type="submit">Cadastrar</button>
+      </form>
+      <p class="auth-footer">Já tem conta? <a href="/login">Entrar</a></p>
+    </div>
+  </div>
+</body>
+</html>
