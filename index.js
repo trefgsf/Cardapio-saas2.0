@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const authRoutes = require('./routes/auth');
 const painelRoutes = require('./routes/painel');
+const publicRoutes = require('./routes/public');
 require('dotenv').config();
 
 const app = express();
