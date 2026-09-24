@@ -19,6 +19,7 @@ body {
   background: var(--cream);
   color: var(--ink);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -30,16 +31,18 @@ a {
 .site-footer {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   justify-content: space-between;
   margin: 0 auto;
   max-width: 1180px;
-  padding: 28px 32px;
+  padding: 20px;
 }
 
 .brand {
   align-items: center;
   display: inline-flex;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
   gap: 10px;
   letter-spacing: -0.04em;
@@ -51,6 +54,7 @@ a {
   border-radius: 9px;
   color: white;
   display: inline-flex;
+  flex-shrink: 0;
   font-family: Georgia, serif;
   font-size: 20px;
   height: 34px;
@@ -67,7 +71,7 @@ a {
   align-items: center;
   display: flex;
   font-size: 14px;
-  gap: 26px;
+  gap: 16px;
 }
 
 .nav-links > a:first-child,
@@ -83,9 +87,10 @@ a {
   display: inline-flex;
   font-size: 14px;
   font-weight: 700;
-  gap: 18px;
-  padding: 16px 21px;
+  gap: 14px;
+  padding: 14px 18px;
   transition: background 160ms ease, transform 160ms ease;
+  white-space: nowrap;
 }
 
 .button:hover {
@@ -94,40 +99,40 @@ a {
 }
 
 .button-small {
-  padding: 11px 16px;
+  padding: 10px 14px;
 }
 
+/* Hero: mobile-first (empilhado por padrão) */
 .hero {
-  align-items: center;
-  display: grid;
-  gap: 80px;
-  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   margin: 0 auto;
   max-width: 1180px;
-  min-height: 590px;
-  padding: 72px 32px 96px;
+  padding: 32px 20px 56px;
 }
 
 .hero-copy {
-  max-width: 530px;
+  max-width: 100%;
 }
 
 .eyebrow {
   color: var(--orange);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  margin: 0 0 24px;
+  letter-spacing: 0.12em;
+  margin: 0 0 16px;
   text-transform: uppercase;
 }
 
 h1 {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(48px, 5.4vw, 78px);
+  font-size: clamp(34px, 9vw, 78px);
   font-weight: 400;
-  letter-spacing: -0.07em;
-  line-height: 0.98;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
   margin: 0;
+  word-wrap: break-word;
 }
 
 h1 span {
@@ -136,16 +141,17 @@ h1 span {
 
 .hero-text {
   color: var(--muted);
-  font-size: 17px;
-  line-height: 1.65;
-  margin: 30px 0 34px;
-  max-width: 430px;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 22px 0 28px;
+  max-width: 100%;
 }
 
 .hero-actions {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
-  gap: 26px;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .text-link {
@@ -159,8 +165,9 @@ h1 span {
   border: 1px solid #e8ebe4;
   border-radius: 16px;
   box-shadow: var(--shadow);
-  padding: 33px 35px 29px;
-  transform: rotate(1.5deg);
+  max-width: 100%;
+  padding: 26px 22px 22px;
+  width: 100%;
 }
 
 .preview-topline {
@@ -170,12 +177,13 @@ h1 span {
   font-size: 10px;
   font-weight: 700;
   gap: 9px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
 }
 
 .preview-dot {
   background: var(--orange);
   border-radius: 50%;
+  flex-shrink: 0;
   height: 7px;
   width: 7px;
 }
@@ -188,16 +196,16 @@ h1 span {
 
 .menu-preview h2 {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: 400;
-  letter-spacing: -0.06em;
-  margin: 26px 0 4px;
+  letter-spacing: -0.05em;
+  margin: 20px 0 4px;
 }
 
 .preview-subtitle {
   color: var(--muted);
   font-size: 13px;
-  margin: 0 0 25px;
+  margin: 0 0 20px;
 }
 
 .dish-list {
@@ -208,15 +216,16 @@ h1 span {
   align-items: center;
   border-bottom: 1px solid var(--line);
   display: grid;
-  gap: 14px;
-  grid-template-columns: 54px 1fr auto;
-  padding: 17px 0;
+  gap: 12px;
+  grid-template-columns: 48px 1fr auto;
+  padding: 15px 0;
 }
 
 .dish-image {
   border-radius: 8px;
-  height: 54px;
-  width: 54px;
+  flex-shrink: 0;
+  height: 48px;
+  width: 48px;
 }
 
 .dish-image-one {
@@ -233,9 +242,9 @@ h1 span {
 
 .dish h3 {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
-  margin: 0 0 5px;
+  margin: 0 0 4px;
 }
 
 .dish p {
@@ -250,18 +259,20 @@ h1 span {
   color: var(--green);
   font-size: 13px;
   padding-top: 3px;
+  white-space: nowrap;
 }
 
+/* Benefícios: mobile-first empilhado */
 .benefits {
   background: var(--green-light);
   display: grid;
-  gap: 40px;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 60px max(32px, calc((100vw - 1116px) / 2));
+  gap: 32px;
+  grid-template-columns: 1fr;
+  padding: 48px 20px;
 }
 
 .benefits article {
-  max-width: 290px;
+  max-width: 100%;
 }
 
 .benefit-number {
@@ -273,10 +284,10 @@ h1 span {
 
 .benefits h2 {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 400;
-  letter-spacing: -0.04em;
-  margin: 17px 0 10px;
+  letter-spacing: -0.03em;
+  margin: 14px 0 8px;
 }
 
 .benefits p {
@@ -289,14 +300,56 @@ h1 span {
 .site-footer {
   color: var(--muted);
   font-size: 12px;
-  padding-bottom: 34px;
-  padding-top: 34px;
+  padding-bottom: 28px;
+  padding-top: 28px;
 }
 
 .site-footer span:first-child {
   color: var(--ink);
   font-weight: 700;
 }
+
+/* Telas maiores: layout lado a lado */
+@media (min-width: 851px) {
+  .hero {
+    align-items: center;
+    display: grid;
+    flex-direction: unset;
+    gap: 80px;
+    grid-template-columns: minmax(0, 0.92fr) minmax(380px, 1.08fr);
+    padding: 72px 32px 96px;
+  }
+
+  .hero-copy {
+    max-width: 530px;
+  }
+
+  .hero-actions {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .menu-preview {
+    padding: 33px 35px 29px;
+    transform: rotate(1.5deg);
+  }
+
+  .site-header,
+  .site-footer {
+    padding: 28px 32px;
+  }
+
+  .benefits {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 60px max(32px, calc((100vw - 1116px) / 2));
+  }
+
+  .benefits article {
+    max-width: 290px;
+  }
+}
+
+/* --- Painel do dono e formulários --- */
 
 .auth-shell {
   align-items: center;
@@ -318,7 +371,7 @@ h1 span {
 
 .auth-card h2 {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 400;
   margin: 0 0 8px;
 }
@@ -393,7 +446,7 @@ h1 span {
 .painel-shell {
   margin: 0 auto;
   max-width: 900px;
-  padding: 28px 20px 60px;
+  padding: 24px 16px 60px;
 }
 
 .painel-header {
@@ -402,12 +455,12 @@ h1 span {
   flex-wrap: wrap;
   gap: 16px;
   justify-content: space-between;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .painel-header h2 {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 400;
   margin: 0;
 }
@@ -416,7 +469,7 @@ h1 span {
   align-items: center;
   display: flex;
   font-size: 14px;
-  gap: 18px;
+  gap: 16px;
 }
 
 .painel-actions a {
@@ -425,7 +478,7 @@ h1 span {
 
 .dish-card-list {
   display: grid;
-  gap: 16px;
+  gap: 14px;
 }
 
 .dish-card {
@@ -433,4 +486,97 @@ h1 span {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(35,
+  box-shadow: 0 8px 24px rgba(35, 62, 48, 0.06);
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 60px 1fr auto;
+  padding: 14px;
+}
+
+.dish-card img,
+.dish-card-photo-placeholder {
+  background: var(--green-light);
+  border-radius: 8px;
+  height: 60px;
+  object-fit: cover;
+  width: 60px;
+}
+
+.dish-card h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 4px;
+}
+
+.dish-card p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0 0 6px;
+}
+
+.dish-price {
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dish-card-actions {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  gap: 8px;
+  text-align: right;
+}
+
+.link-edit {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.btn-delete {
+  background: none;
+  border: 1px solid #e3b0ab;
+  border-radius: 6px;
+  color: #b3261e;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 6px 10px;
+}
+
+.empty-state {
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.form-shell {
+  margin: 0 auto;
+  max-width: 480px;
+  padding: 32px 16px 60px;
+}
+
+.form-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 30px 22px;
+}
+
+.form-card h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 24px;
+}
+
+.back-link {
+  color: var(--muted);
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 20px;
+  }
