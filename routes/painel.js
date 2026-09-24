@@ -100,4 +100,35 @@ router.post('/painel/apagar/:id', protegerRota, async (req, res) => {
   }
 });
 
+router.get('/painel/qrcode', protegerRota, (req, res) => {
+  res.render('qrcode-form', { erro: null });
+});
+
+router.post('/painel/qrcode', protegerRota, async (req, res) => {
+  const quantidade = parseInt(req.body.quantidade, 10);
+  if (!quantidade || quantidade < 1 || quantidade > 60) {
+    return res.render('qrcode-form', { erro: 'Digite um número de mesas entre 1 e 60.' });
+  }
+
+  const slug = req.session.restauranteSlug;
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+
+  try {
+    const mesas = [];
+    for (let i = 1; i <= quantidade; i++) {
+      const url = `${baseUrl}/cardapio/${slug}?mesa=${i}`;
+      const qr = await QRCode.toDataURL(url, { width: 300, margin: 1 });
+      mesas.push({ numero: i, qr, url });
+    }
+
+    res.render('qrcode-print', {
+      mesas,
+      nomeRestaurante: req.session.restauranteNome
+    });
+  } catch (err) {
+    console.error(err);
+    res.render('qrcode-form', { erro: 'Erro ao gerar QR Codes.' });
+  }
+});
+
 module.exports = router;
