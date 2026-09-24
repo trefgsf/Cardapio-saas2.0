@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel - <%= nomeRestaurante %></title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="painel-shell">
+    <div class="painel-header">
+      <h2><%= nomeRestaurante %></h2>
+      <div class="painel-actions">
+        <a href="/logout">Sair</a>
+        <a class="button button-small" href="/painel/novo">+ Novo Prato</a>
+      </div>
+    </div>
+
+    <% if (pratos.length === 0) { %>
+      <div class="empty-state">
+        <p>Você ainda não cadastrou nenhum prato.</p>
+      </div>
+    <% } else { %>
+      <div class="dish-card-list">
+        <% pratos.forEach(prato => { %>
+          <div class="dish-card">
+            <% if (prato.foto_url) { %>
+              <img src="<%= prato.foto_url %>" alt="<%= prato.nome %>">
+            <% } else { %>
+              <div class="dish-card-photo-placeholder"></div>
+            <% } %>
+            <div>
+              <h3><%= prato.nome %></h3>
+              <p><%= prato.descricao %></p>
+              <span class="dish-price">R$ <%= prato.preco %></span>
+            </div>
+            <div class="dish-card-actions">
+              <a class="link-edit" href="/painel/editar/<%= prato.id %>">Editar</a>
+              <form method="POST" action="/painel/apagar/<%= prato.id %>">
+                <button class="btn-delete" type="submit">Apagar</button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
