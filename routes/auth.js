@@ -48,6 +48,7 @@ router.post('/login', async (req, res) => {
 
     req.session.restauranteId = restaurante.id;
     req.session.restauranteNome = restaurante.nome_restaurante;
+    req.session.restauranteSlug = restaurante.slug;
     res.redirect('/painel');
   } catch (err) {
     console.error(err);
