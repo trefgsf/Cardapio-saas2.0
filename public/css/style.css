@@ -580,3 +580,79 @@ h1 span {
   font-size: 14px;
   margin-top: 20px;
   }
+/* --- Cardápio público --- */
+
+.menu-shell {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 28px 18px 60px;
+}
+
+.menu-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.menu-header h1 {
+  font-size: clamp(28px, 8vw, 40px);
+}
+
+.mesa-badge {
+  background: var(--orange);
+  border-radius: 20px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  white-space: nowrap;
+}
+
+.menu-list {
+  display: grid;
+  gap: 16px;
+}
+
+.menu-item {
+  align-items: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(35, 62, 48, 0.06);
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 76px 1fr;
+  padding: 14px;
+}
+
+.menu-item-photo {
+  border-radius: 8px;
+  height: 76px;
+  object-fit: cover;
+  width: 76px;
+}
+
+.menu-item-photo-placeholder {
+  background: var(--green-light);
+}
+
+.menu-item-info h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  font-weight: 400;
+  margin: 0 0 4px;
+}
+
+.menu-item-info p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+
+.menu-item-price {
+  color: var(--green);
+  font-size: 14px;
+  font-weight: 700;
+  }
