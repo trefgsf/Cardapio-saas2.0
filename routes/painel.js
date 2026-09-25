@@ -22,7 +22,9 @@ router.get('/painel', protegerRota, async (req, res) => {
       pratos: result.rows,
       nomeRestaurante: req.session.restauranteNome,
       slug: req.session.restauranteSlug,
+      tipoConta: req.session.tipoConta,
       erro: null
+    });
     });
   } catch (err) {
     console.error(err);
@@ -32,21 +34,30 @@ router.get('/painel', protegerRota, async (req, res) => {
 
 router.get('/painel/novo', protegerRota, (req, res) => {
   res.render('prato-form', { prato: null, erro: null });
+router.get('/painel/novo', protegerRota, (req, res) => {
+  res.render('prato-form', { prato: null, tipoConta: req.session.tipoConta, erro: null });
 });
 
-router.post('/painel/novo', protegerRota, upload.single('foto'), async (req, res) => {
-  const { nome, descricao, preco } = req.body;
-  const foto_url = req.file ? req.file.path : null;
+router.post('/painel/editar/:id', protegerRota, upload.single('foto'), async (req, res) => {
+  const { nome, descricao, preco, link_afiliado } = req.body;
   try {
-    await pool.query(
-      `INSERT INTO pratos (restaurante_id, nome, descricao, preco, foto_url)
-       VALUES ($1, $2, $3, $4, $5)`,
-      [req.session.restauranteId, nome, descricao, preco, foto_url]
-    );
+    if (req.file) {
+      await pool.query(
+        `UPDATE pratos SET nome=$1, descricao=$2, preco=$3, foto_url=$4, link_afiliado=$5
+         WHERE id=$6 AND restaurante_id=$7`,
+        [nome, descricao, preco, req.file.path, link_afiliado || null, req.params.id, req.session.restauranteId]
+      );
+    } else {
+      await pool.query(
+        `UPDATE pratos SET nome=$1, descricao=$2, preco=$3, link_afiliado=$4
+         WHERE id=$5 AND restaurante_id=$6`,
+        [nome, descricao, preco, link_afiliado || null, req.params.id, req.session.restauranteId]
+      );
+    }
     res.redirect('/painel');
   } catch (err) {
     console.error(err);
-    res.render('prato-form', { prato: null, erro: 'Erro ao criar prato.' });
+    res.redirect('/painel');
   }
 });
 
@@ -57,13 +68,13 @@ router.get('/painel/editar/:id', protegerRota, async (req, res) => {
       [req.params.id, req.session.restauranteId]
     );
     if (result.rows.length === 0) return res.redirect('/painel');
-    res.render('prato-form', { prato: result.rows[0], erro: null });
+    res.render('prato-form', { prato: result.rows[0], tipoConta: req.session.tipoConta, erro: null });
   } catch (err) {
     console.error(err);
     res.redirect('/painel');
   }
 });
-
+  
 router.post('/painel/editar/:id', protegerRota, upload.single('foto'), async (req, res) => {
   const { nome, descricao, preco } = req.body;
   try {
