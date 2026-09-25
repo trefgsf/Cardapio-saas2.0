@@ -675,3 +675,17 @@ h1 span {
   font-weight: 700;
   padding: 3px 10px;
   }
+/* --- Personalização: capa e bio --- */
+
+.menu-cover {
+  display: block;
+  height: 160px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.menu-bio {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  margin: 6px 0 0;
+  }
