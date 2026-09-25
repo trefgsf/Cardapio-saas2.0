@@ -133,3 +133,36 @@ router.post('/painel/qrcode', protegerRota, async (req, res) => {
 });
 
 module.exports = router;
+router.get('/painel/personalizar', protegerRota, async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM restaurantes WHERE id = $1', [req.session.restauranteId]);
+    res.render('personalizar', { restaurante: result.rows[0], erro: null });
+  } catch (err) {
+    console.error(err);
+    res.redirect('/painel');
+  }
+});
+
+router.post('/painel/personalizar', protegerRota, upload.single('capa'), async (req, res) => {
+  const { cor_primaria, bio } = req.body;
+  try {
+    if (req.file) {
+      await pool.query(
+        `UPDATE restaurantes SET cor_primaria=$1, bio=$2, capa_url=$3 WHERE id=$4`,
+        [cor_primaria, bio, req.file.path, req.session.restauranteId]
+      );
+    } else {
+      await pool.query(
+        `UPDATE restaurantes SET cor_primaria=$1, bio=$2 WHERE id=$3`,
+        [cor_primaria, bio, req.session.restauranteId]
+      );
+    }
+    res.redirect('/painel/personalizar');
+  } catch (err) {
+    console.error(err);
+    res.render('personalizar', {
+      restaurante: { cor_primaria, bio },
+      erro: 'Erro ao salvar personalização.'
+    });
+  }
+});
