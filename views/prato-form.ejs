@@ -27,6 +27,12 @@
           <label>Preço (R$)</label>
           <input type="number" step="0.01" name="preco" placeholder="0.00" value="<%= prato ? prato.preco : '' %>" required>
         </div>
+        <% if (tipoConta === 'afiliado') { %>
+        <div class="field">
+          <label>Link do produto (Shopee, TikTok Shop, etc)</label>
+          <input type="url" name="link_afiliado" placeholder="https://..." value="<%= prato && prato.link_afiliado ? prato.link_afiliado : '' %>">
+        </div>
+        <% } %>
         <div class="field">
           <label>Foto do prato</label>
           <input type="file" name="foto" accept="image/*">
