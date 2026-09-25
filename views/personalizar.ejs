@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalizar cardápio</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css?v=2">
+</head>
+<body>
+  <div class="form-shell">
+    <div class="form-card">
+      <h2>Personalizar cardápio</h2>
+      <% if (erro) { %>
+        <div class="error-box"><%= erro %></div>
+      <% } %>
+      <form method="POST" action="/painel/personalizar" enctype="multipart/form-data">
+        <div class="field">
+          <label>Cor principal do cardápio</label>
+          <input type="color" name="cor_primaria" value="<%= restaurante.cor_primaria || '#16473a' %>" style="height:48px; padding:4px; cursor:pointer;">
+        </div>
+        <div class="field">
+          <label>Frase de apresentação</label>
+          <textarea name="bio" placeholder="Ex: Sabores autênticos desde 2010"><%= restaurante.bio || '' %></textarea>
+        </div>
+        <div class="field">
+          <label>Imagem de capa (banner do topo)</label>
+          <input type="file" name="capa" accept="image/*">
+          <% if (restaurante.capa_url) { %>
+            <p style="margin-top:10px;">
+              <img src="<%= restaurante.capa_url %>" style="max-width:100%; border-radius:10px;" alt="Capa atual">
+            </p>
+          <% } %>
+        </div>
+        <button class="button button-full" type="submit">Salvar</button>
+      </form>
+      <a class="back-link" href="/painel">← Voltar ao painel</a>
+    </div>
+  </div>
+</body>
+</html>
