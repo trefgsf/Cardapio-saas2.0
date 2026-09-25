@@ -1,7 +1,7 @@
 const express = require('express');
 const pool = require('../config/db');
 const upload = require('../config/cloudinary');
-const QRCode = require('qrcode'); 
+const QRCode = require('qrcode');
 
 const router = express.Router();
 
@@ -25,7 +25,6 @@ router.get('/painel', protegerRota, async (req, res) => {
       tipoConta: req.session.tipoConta,
       erro: null
     });
-    });
   } catch (err) {
     console.error(err);
     res.send('Erro ao carregar painel.');
@@ -33,31 +32,22 @@ router.get('/painel', protegerRota, async (req, res) => {
 });
 
 router.get('/painel/novo', protegerRota, (req, res) => {
-  res.render('prato-form', { prato: null, erro: null });
-router.get('/painel/novo', protegerRota, (req, res) => {
   res.render('prato-form', { prato: null, tipoConta: req.session.tipoConta, erro: null });
 });
 
-router.post('/painel/editar/:id', protegerRota, upload.single('foto'), async (req, res) => {
+router.post('/painel/novo', protegerRota, upload.single('foto'), async (req, res) => {
   const { nome, descricao, preco, link_afiliado } = req.body;
+  const foto_url = req.file ? req.file.path : null;
   try {
-    if (req.file) {
-      await pool.query(
-        `UPDATE pratos SET nome=$1, descricao=$2, preco=$3, foto_url=$4, link_afiliado=$5
-         WHERE id=$6 AND restaurante_id=$7`,
-        [nome, descricao, preco, req.file.path, link_afiliado || null, req.params.id, req.session.restauranteId]
-      );
-    } else {
-      await pool.query(
-        `UPDATE pratos SET nome=$1, descricao=$2, preco=$3, link_afiliado=$4
-         WHERE id=$5 AND restaurante_id=$6`,
-        [nome, descricao, preco, link_afiliado || null, req.params.id, req.session.restauranteId]
-      );
-    }
+    await pool.query(
+      `INSERT INTO pratos (restaurante_id, nome, descricao, preco, foto_url, link_afiliado)
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      [req.session.restauranteId, nome, descricao, preco, foto_url, link_afiliado || null]
+    );
     res.redirect('/painel');
   } catch (err) {
     console.error(err);
-    res.redirect('/painel');
+    res.render('prato-form', { prato: null, tipoConta: req.session.tipoConta, erro: 'Erro ao criar item.' });
   }
 });
 
@@ -74,21 +64,21 @@ router.get('/painel/editar/:id', protegerRota, async (req, res) => {
     res.redirect('/painel');
   }
 });
-  
+
 router.post('/painel/editar/:id', protegerRota, upload.single('foto'), async (req, res) => {
-  const { nome, descricao, preco } = req.body;
+  const { nome, descricao, preco, link_afiliado } = req.body;
   try {
     if (req.file) {
       await pool.query(
-        `UPDATE pratos SET nome=$1, descricao=$2, preco=$3, foto_url=$4
-         WHERE id=$5 AND restaurante_id=$6`,
-        [nome, descricao, preco, req.file.path, req.params.id, req.session.restauranteId]
+        `UPDATE pratos SET nome=$1, descricao=$2, preco=$3, foto_url=$4, link_afiliado=$5
+         WHERE id=$6 AND restaurante_id=$7`,
+        [nome, descricao, preco, req.file.path, link_afiliado || null, req.params.id, req.session.restauranteId]
       );
     } else {
       await pool.query(
-        `UPDATE pratos SET nome=$1, descricao=$2, preco=$3
-         WHERE id=$4 AND restaurante_id=$5`,
-        [nome, descricao, preco, req.params.id, req.session.restauranteId]
+        `UPDATE pratos SET nome=$1, descricao=$2, preco=$3, link_afiliado=$4
+         WHERE id=$5 AND restaurante_id=$6`,
+        [nome, descricao, preco, link_afiliado || null, req.params.id, req.session.restauranteId]
       );
     }
     res.redirect('/painel');
