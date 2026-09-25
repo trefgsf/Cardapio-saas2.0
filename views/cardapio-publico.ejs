@@ -29,10 +29,14 @@
             <% } else { %>
               <div class="menu-item-photo menu-item-photo-placeholder"></div>
             <% } %>
-            <div class="menu-item-info">
+            
+          <div class="menu-item-info">
               <h3><%= prato.nome %></h3>
               <p><%= prato.descricao %></p>
               <span class="menu-item-price">R$ <%= prato.preco %></span>
+              <% if (restaurante.tipo_conta === 'afiliado' && prato.link_afiliado) { %>
+                <a class="button button-small" style="margin-top:10px; display:inline-flex;" href="<%= prato.link_afiliado %>" target="_blank" rel="nofollow noopener">Ver produto</a>
+              <% } %>
             </div>
           </div>
         <% }) %>
